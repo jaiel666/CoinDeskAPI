@@ -4,15 +4,25 @@ namespace App;
 
 class CoinPrice
 {
-    private $rate;
+    private $cryptoDataRate;
 
-    public function __construct($rate)
+    public function __construct($cryptoDataRate)
     {
-        $this->rate = $rate;
+        $this->cryptoDataRate = $cryptoDataRate;
     }
 
-    public function getRate()
+    public function getUSDPrice(): string
     {
-        return $this->rate;
+        return $this->cryptoDataRate['bpi']['USD']['rate'];
+    }
+
+    public function getGBPPrice(): string
+    {
+        return $this->cryptoDataRate['bpi']['GBP']['rate'];
+    }
+
+    public function getEURPrice(): string
+    {
+        return $this->cryptoDataRate['bpi']['EUR']['rate'];
     }
 }

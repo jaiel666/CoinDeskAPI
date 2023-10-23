@@ -10,7 +10,10 @@ class CoinDeskApplication
     {
         $currentDateTime = Carbon::now('Europe/Riga');
         $api = new CoinDeskAPI();
-        $coinPrice = $api->fetchCoinPrice();
-        echo "Current Date and Time: " . $currentDateTime->format('Y/m/d H:i A') . " and Current Bitcoin Price in EUR: " . $coinPrice->getRate() . "\n";
+        $data = $api->fetchDataFromAPI();
+        $coinPrice = new CoinPrice($data);
+
+        echo "Current Date and Time: " . $currentDateTime->format('Y/m/d H:i A') . "\n";
+        echo "Current Bitcoin Price In USD: " . $coinPrice->getUSDPrice() . " In GBP: " . $coinPrice->getGBPPrice() . " In EUR: " . $coinPrice->getEURPrice() . "\n";
     }
 }
